@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "get your ass off youtube",
+  "version": "1.0",
+  "description": "warns you to stop opening youtube as a habit. mocks you too.",
+  "permissions": [
+    "activeTab",
+		"storage"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["gtfo.js"],
+			"run_at": "document_end"
+    }
+  ]
+}
