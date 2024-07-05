@@ -17,11 +17,13 @@ setInterval(() => {
 }, 500);
 
 
-chrome.storage.sync.get(['webhookUrl', 'username'], function(data) {
+chrome.storage.sync.get(['webhookUrl', 'username', 'uid'], function(data) {
 	const webhookUrl = data.webhookUrl;
 	const username = data.username;
+	const uid = data.uid;
 	console.log(`Stored Webhook URL: ${webhookUrl}`);
 	console.log(`Stored Username: ${username}`);
+	console.log(`Stored UID: ${uid}`);
 
 	if (webhookUrl && username) {
 
@@ -42,13 +44,12 @@ chrome.storage.sync.get(['webhookUrl', 'username'], function(data) {
 			ctx.fillText('laugh at this loser', img.width/2, img.height/2 + 96*3 + 48);
 
 			canvas.toBlob((blob) => {
-				console.log(blob)
 				const formData = new FormData();
 				formData.append('file', blob, 'image.png');
 				formData.append('payload_json', JSON.stringify({
 					username: "No YouTube",
 					avatar_url: "",
-					// content: ""
+					content: uid ? `<@${uid}>` : ''
 				}));
 
 				// fire and forget 😁
