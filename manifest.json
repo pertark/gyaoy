@@ -13,7 +13,7 @@
   "options_page": "options.html",
   "content_scripts": [
     {
-      "matches": ["*://*.youtube.com/*"],
+      "matches": ["*://*/*", "*://*.youtube.com/*", "https://news.ycombinator.com/"],
       "js": ["gtfo.js"],
 			"run_at": "document_end"
     }
